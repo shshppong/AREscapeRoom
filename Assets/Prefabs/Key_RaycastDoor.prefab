@@ -298,6 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redDoor: 1
   redKey: 0
+  key: 0
   _keyInventory: {fileID: 391414419138098665}
 --- !u!114 &391069078309109985
 MonoBehaviour:
@@ -311,12 +312,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a3783d3d1032b41a916f724f98f988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openAnimationName: DoorOpen
-  closeAnimationName: DoorClose
+  openandclose: {fileID: 0}
   timeToShowUI: 1
   showDoorLockedUI: {fileID: 391414419020156365}
   _keyInventory: {fileID: 391414419138098665}
-  waitTimer: 1
   pauseInteraction: 0
 --- !u!1 &391096359096184068
 GameObject:
@@ -537,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f339ef5952b2a2b4baacc620ba36f509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasRedKey: 1
+  hasKeys: 0
 --- !u!1 &391414420131224090
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &391414420131224091
 Transform:
   m_ObjectHideFlags: 0
@@ -782,6 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redDoor: 0
   redKey: 1
+  key: 0
   _keyInventory: {fileID: 391414419138098665}
 --- !u!1 &7337332326448152075
 GameObject:

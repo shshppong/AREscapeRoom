@@ -11,44 +11,51 @@ namespace SojaExiles
 
 		public Animator pull_01;
 		public bool open;
-		public Transform Player;
+
+		[SerializeField]
+		private Transform Player;
+
+		private float distance = MyARRaycast.MySetDistanceObject.distance;
+
+		// 터치
+		private Vector2 touchPosition = default;
 
 		void Start()
 		{
 			open = false;
+
+            // 맵 활성화 하면 opencloseDoor.cs 에서 player Transform을 ARCamera Transform으로 종속시키기 
+			Player = Camera.main.transform;
 		}
 
 		void OnMouseOver()
 		{
 			{
-				if (Player)
+				if(Player)
 				{
-					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 10)
+					float dist = Vector3.Distance(Camera.main.transform.position, transform.position);
+					if(dist < distance)
 					{
-						print("object name");
-						if (open == false)
+						if(Input.touchCount > 0)
 						{
-							if (Input.GetMouseButtonDown(0))
+							Touch touch = Input.GetTouch(0);
+
+							touchPosition = touch.position;
+
+							if(touch.phase == TouchPhase.Began)
 							{
-								StartCoroutine(opening());
-							}
-						}
-						else
-						{
-							if (open == true)
-							{
-								if (Input.GetMouseButtonDown(0))
+								if(open == false)
+								{
+									StartCoroutine(opening());
+								}
+								else
 								{
 									StartCoroutine(closing());
 								}
 							}
-
 						}
-
 					}
 				}
-
 			}
 
 		}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SojaExiles
+namespace MyARRaycast
 
 {
 	public class opencloseDoor1 : MonoBehaviour
@@ -12,9 +12,14 @@ namespace SojaExiles
 		public bool open;
 		public Transform Player;
 
+		private float distance = MyARRaycast.MySetDistanceObject.distance;
+		private Vector2 touchPosition = default;
+
 		void Start()
 		{
 			open = false;
+
+			Player = Camera.main.transform;
 		}
 
 		void OnMouseOver()
@@ -22,28 +27,27 @@ namespace SojaExiles
 			{
 				if (Player)
 				{
-					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 15)
+					float dist = Vector3.Distance(Camera.main.transform.position, transform.position);
+					if(dist < distance)
 					{
-						if (open == false)
+						if(Input.touchCount > 0)
 						{
-							if (Input.GetMouseButtonDown(0))
+							Touch touch = Input.GetTouch(0);
+
+							touchPosition = touch.position;
+
+							if(touch.phase == TouchPhase.Began)
 							{
-								StartCoroutine(opening());
-							}
-						}
-						else
-						{
-							if (open == true)
-							{
-								if (Input.GetMouseButtonDown(0))
+								if(open == false)
+								{
+									StartCoroutine(opening());
+								}
+								else
 								{
 									StartCoroutine(closing());
 								}
 							}
-
 						}
-
 					}
 				}
 

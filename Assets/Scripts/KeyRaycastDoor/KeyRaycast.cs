@@ -1,72 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace KeySystem
 {
     public class KeyRaycast : MonoBehaviour
     {
-        public int rayLength = 5;
-        public LayerMask layerMaskInteract;
-        public string excluseLayerName = null;
-        
         KeyItemController raycastedObject;
-        public KeyCode openDoorKey = KeyCode.Mouse0;
 
-        public Image crosshair = null;
-        bool isCrosshairActive;
         bool doOnce;
 
-        string interactableTag = "InteractiveObject";
+		[SerializeField]
+		private Transform Player;
 
-        void Update()
+		private float distance = MyARRaycast.MySetDistanceObject.distance;
+		private Vector2 touchPosition = default;
+
+        void Start()
         {
-            RaycastHit hit;
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Player = Camera.main.transform;
+            raycastedObject = GetComponent<KeyItemController>();
+        }
 
-            int mask = 1 << LayerMask.NameToLayer(excluseLayerName) | layerMaskInteract.value;
 
-            if(Physics.Raycast(transform.position, fwd, out hit, rayLength, mask))
+        void OnMouseOver()
+		{
+            if(Player)
             {
-                if(hit.collider.CompareTag(interactableTag))
+                float dist = Vector3.Distance(Camera.main.transform.position, transform.position);
+                if(dist < distance)
                 {
-                    if(!doOnce)
+                    if(Input.touchCount > 0)
                     {
-                        raycastedObject = hit.collider.gameObject.GetComponent<KeyItemController>();
-                        CrosshairChange(true);
-                    }
+                        Touch touch = Input.GetTouch(0);
 
-                    isCrosshairActive = true;
-                    doOnce = true;
+                        touchPosition = touch.position;
 
-                    if(Input.GetKeyDown(openDoorKey))
-                    {
-                        raycastedObject.ObjectInteraction();
+                        if(touch.phase == TouchPhase.Began)
+                        {
+                            raycastedObject.ObjectInteraction();
+                        }
                     }
                 }
             }
-            else
-            {
-                if(isCrosshairActive)
-                {
-                    CrosshairChange(false);
-                    doOnce = false;
-                }
-            }
-        }
-
-        void CrosshairChange(bool on)
-        {
-            if(on && !doOnce)
-            {
-                crosshair.color = Color.red;
-            }
-            else
-            {
-                crosshair.color = Color.white;
-                isCrosshairActive = false;
-            }
-        }
+		}
     }
 }

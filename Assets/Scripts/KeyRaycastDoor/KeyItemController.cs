@@ -7,7 +7,7 @@ namespace KeySystem
     public class KeyItemController : MonoBehaviour
     {
         public bool redDoor = false;
-        public bool redKey = false;
+        public bool key = false;
 
         public KeyInventory _keyInventory = null;
 
@@ -15,6 +15,7 @@ namespace KeySystem
 
         void Start()
         {
+            _keyInventory = GameObject.Find("KeyInventory").GetComponent<KeyInventory>();
             if(redDoor)
             {
                 doorObject = GetComponent<KeyDoorController>();
@@ -26,9 +27,9 @@ namespace KeySystem
             if(redDoor)
             {
                 doorObject.PlayAnimation();
-            }else if(redKey)
+            }else if(key)
             {
-                _keyInventory.hasRedKey = true;
+                _keyInventory.hasKeys += 1;
                 gameObject.SetActive(false);
             }
         }

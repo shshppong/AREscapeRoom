@@ -21,6 +21,8 @@ namespace MyARRaycast
 
         float maxDistance = 15.0f;
 
+        public GameObject scoreObj;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -38,7 +40,7 @@ namespace MyARRaycast
             }
             else
             {
-                MyRaycastARManager();
+                // MyRaycastARManager();
             }
         }
 
@@ -78,43 +80,50 @@ namespace MyARRaycast
                         mapSpawned = true;
                         // 플랜 스캔 안하게 끄기
                         GetComponent<ARPlaneManager>().enabled = false;
-                    }
-                }
-            }
-        }
 
-        void MyRaycastARManager()
-        {
-            if(mapSpawned)
-            {
-                if(Input.touchCount > 0)
-                {
-                    Touch touch = Input.GetTouch(0);
-
-                    touchPosition = touch.position;
-
-                    if(touch.phase == TouchPhase.Began)
-                    {
-                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                        RaycastHit hitObject;
-                        if(Physics.Raycast(ray, out hitObject, maxDistance))
+                        scoreObj.SetActive(true);
+                        GameObject[] objs = GameObject.FindGameObjectsWithTag("ARDefaultPlane");
+                        foreach(GameObject obj in objs)
                         {
-                            // 문
-                            if(hitObject.transform.gameObject.CompareTag("Door"))
-                            {
-                                opencloseDoor mycoroutine = hitObject.transform.GetComponent<opencloseDoor>();
-                                mycoroutine.StartCoroutine(mycoroutine.opening());
-                            }
-                            // 열쇠
-                            if(hitObject.transform.gameObject.CompareTag("Item"))
-                            {
-                                // 열쇠 얻는 스크립트
-                            }
+                            obj.SetActive(false);
                         }
                     }
                 }
-
             }
         }
+
+        // void MyRaycastARManager()
+        // {
+        //     if(mapSpawned)
+        //     {
+        //         if(Input.touchCount > 0)
+        //         {
+        //             Touch touch = Input.GetTouch(0);
+
+        //             touchPosition = touch.position;
+
+        //             if(touch.phase == TouchPhase.Began)
+        //             {
+        //                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
+        //                 RaycastHit hitObject;
+        //                 if(Physics.Raycast(ray, out hitObject, maxDistance))
+        //                 {
+        //                     // 문
+        //                     if(hitObject.transform.gameObject.CompareTag("Door"))
+        //                     {
+        //                         opencloseDoor mycoroutine = hitObject.transform.GetComponent<opencloseDoor>();
+        //                         mycoroutine.StartCoroutine(mycoroutine.opening());
+        //                     }
+        //                     // 열쇠
+        //                     if(hitObject.transform.gameObject.CompareTag("Item"))
+        //                     {
+        //                         // 열쇠 얻는 스크립트
+        //                     }
+        //                 }
+        //             }
+        //         }
+
+        //     }
+        // }
     }
 }
