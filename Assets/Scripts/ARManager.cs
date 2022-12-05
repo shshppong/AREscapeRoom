@@ -14,6 +14,8 @@ namespace MyARRaycast
         public GameObject indicator;
         public GameObject model;
         
+        public GameObject flashlightModel;
+        
 
         public bool mapSpawned = false;
 
@@ -29,6 +31,7 @@ namespace MyARRaycast
             arRaycastManager = GetComponent<ARRaycastManager>();
             viewCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
             model.SetActive(false);
+            flashlightModel.SetActive(false);
         }
 
         // Update is called once per frame
@@ -75,6 +78,8 @@ namespace MyARRaycast
                         model.transform.position = indicator.transform.position;
                         model.transform.rotation = indicator.transform.rotation;
                         model.SetActive(true);
+
+                        flashlightModel.SetActive(true);
                     
                         // 맵 활성화 하면 opencloseDoor.cs 에서 player Transform을 ARCamera Transform으로 종속시키기 
                         mapSpawned = true;
