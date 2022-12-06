@@ -613,6 +613,7 @@ MonoBehaviour:
   indicator: {fileID: 639482142}
   model: {fileID: 763416987998009689}
   flashlightModel: {fileID: 862505394}
+  ppObject: {fileID: 963981408}
   mapSpawned: 0
   scoreObj: {fileID: 1223817102}
 --- !u!114 &605672852

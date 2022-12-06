@@ -13,9 +13,10 @@ namespace MyARRaycast
         Vector2 viewCenter;
         public GameObject indicator;
         public GameObject model;
-        
+
         public GameObject flashlightModel;
-        
+        public GameObject ppObject;
+
 
         public bool mapSpawned = false;
 
@@ -32,6 +33,7 @@ namespace MyARRaycast
             viewCenter = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
             model.SetActive(false);
             flashlightModel.SetActive(false);
+            ppObject.SetActive(false);
         }
 
         // Update is called once per frame
@@ -80,7 +82,8 @@ namespace MyARRaycast
                         model.SetActive(true);
 
                         flashlightModel.SetActive(true);
-                    
+                        ppObject.SetActive(true);
+
                         // 맵 활성화 하면 opencloseDoor.cs 에서 player Transform을 ARCamera Transform으로 종속시키기 
                         mapSpawned = true;
                         // 플랜 스캔 안하게 끄기
