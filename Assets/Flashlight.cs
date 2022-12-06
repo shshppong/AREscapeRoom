@@ -10,9 +10,6 @@ public class Flashlight : MonoBehaviour
     private Vector2 touchPosition = default;
 
     public GameObject lightObj;
-    // public Transform camChildObjPos;
-
-    public float smoothing = 0.2f;
 
     void Start()
     {
@@ -52,6 +49,7 @@ public class Flashlight : MonoBehaviour
                     }
                 }
             }
+            #if UNITY_EDITOR
             if(Input.GetMouseButtonDown(0))
             {
                 if(push == false)
@@ -65,6 +63,7 @@ public class Flashlight : MonoBehaviour
                     push = false;
                 }
             }
+            #endif
         }
     }
 }

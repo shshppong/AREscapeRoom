@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   push: 0
   lightObj: {fileID: 1175331865632600}
+  smoothing: 0.2
 --- !u!1 &1175331865632600
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,8 +180,8 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2.1
   m_Range: 7
-  m_SpotAngle: 60
-  m_InnerSpotAngle: 6
+  m_SpotAngle: 55
+  m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
