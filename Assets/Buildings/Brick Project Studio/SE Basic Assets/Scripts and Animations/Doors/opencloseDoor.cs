@@ -60,20 +60,27 @@ namespace MyARRaycast
 
 		public IEnumerator opening()
 		{
+			GamePlayManager.Instance.random = Random.Range(1, 4);
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.Instance.random);
+
 			print("you are opening the door");
 			openandclose.Play("Opening");
 			open = true;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.Instance.random);
 		}
 
 		public IEnumerator closing()
 		{
+			GamePlayManager.Instance.random = Random.Range(4, 7);
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.Instance.random);
+
 			print("you are closing the door");
 			openandclose.Play("Closing");
 			open = false;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.Instance.random);
 		}
-
 
 	}
 }

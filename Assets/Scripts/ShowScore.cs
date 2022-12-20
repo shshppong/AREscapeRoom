@@ -16,6 +16,6 @@ public class ShowScore : MonoBehaviour
 
     void Update()
     {
-        text.text = "열쇠 획득 : " + _keyInventory.hasKeys.ToString();
+        text.text = _keyInventory.hasKeys.ToString();
     }
 }

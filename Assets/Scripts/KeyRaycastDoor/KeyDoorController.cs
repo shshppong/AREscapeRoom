@@ -16,11 +16,9 @@ namespace KeySystem
         public KeyInventory _keyInventory = null;
         public bool pauseInteraction = false;
 
-        public int checkKeys = 6;
-
         public void PlayAnimation()
         {
-            if(_keyInventory.hasKeys >= checkKeys)
+            if(_keyInventory.hasKeys >= GamePlayManager.Instance.checkKeys)
             {
                 OpenDoor();
             }
@@ -44,23 +42,34 @@ namespace KeySystem
 
         IEnumerator ShowDoorLocked()
         {
+			GamePlayManager.Instance.random = Random.Range(12, 14);
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.Instance.random);
             showDoorLockedUI.SetActive(true);
             yield return new WaitForSeconds(timeToShowUI);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.Instance.random);
             showDoorLockedUI.SetActive(false);
         }
         
         IEnumerator opening()
 		{
+			GamePlayManager.Instance.random = Random.Range(1, 4);
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.Instance.random);
+
 			openandclose.Play("Opening");
 			doorOpen = true;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.Instance.random);
 		}
 
 		IEnumerator closing()
 		{
+			GamePlayManager.Instance.random = Random.Range(4, 7);
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.Instance.random);
+
 			openandclose.Play("Closing");
 			doorOpen = false;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.Instance.random);
 		}
 
     }

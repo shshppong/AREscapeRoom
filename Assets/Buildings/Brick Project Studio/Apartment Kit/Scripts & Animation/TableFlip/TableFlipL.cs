@@ -56,18 +56,25 @@ namespace MyARRaycast
 
 		IEnumerator opening()
 		{
+			GamePlayManager.Instance.random = Random.Range(1, 4);
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.Instance.random);
+
 			print ("you are opening the door");
 			FlipL.Play ("Lup");
 			open = true;
 			yield return new WaitForSeconds (.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.AudioType.WINDOW_OPEN);
 		}
 
 		IEnumerator closing()
 		{
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.AudioType.WINDOW_CLOSE);
+
 			print ("you are closing the door");
 			FlipL.Play ("Ldown");
 			open = false;
 			yield return new WaitForSeconds (.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.AudioType.WINDOW_OPEN);
 		}
 
 

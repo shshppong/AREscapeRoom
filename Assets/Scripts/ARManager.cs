@@ -34,6 +34,7 @@ namespace MyARRaycast
             model.SetActive(false);
             flashlightModel.SetActive(false);
             ppObject.SetActive(false);
+            scoreObj.SetActive(false);
         }
 
         // Update is called once per frame
@@ -95,6 +96,9 @@ namespace MyARRaycast
                         {
                             obj.SetActive(false);
                         }
+
+                        // 노래 틀기
+                        GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.AudioType.BACKGROUND);
                     }
                 }
             }

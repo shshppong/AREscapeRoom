@@ -59,18 +59,24 @@ namespace MyARRaycast
 
 		IEnumerator opening()
 		{
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.AudioType.WINDOW_OPEN);
+
 			print("you are opening the Window");
 			openandclosewindow.Play("Openingwindow");
 			open = true;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.AudioType.WINDOW_CLOSE);
 		}
 
 		IEnumerator closing()
 		{
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.AudioType.WINDOW_CLOSE);
+
 			print("you are closing the Window");
 			openandclosewindow.Play("Closingwindow");
 			open = false;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.AudioType.WINDOW_OPEN);
 		}
 
 

@@ -53,18 +53,25 @@ namespace SojaExiles
 
 		IEnumerator opening()
 		{
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.AudioType.WINDOW_OPEN);
+
 			print("you are opening the Window");
 			openandclosewindow1.Play("Openingwindow 1");
 			open = true;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.Instance.random);
 		}
 
 		IEnumerator closing()
 		{
+			GamePlayManager.Instance.random = Random.Range(4, 7);
+			GamePlayManager.Instance.ToggleOnAudio(GamePlayManager.Instance.random);
+
 			print("you are closing the Window");
 			openandclosewindow1.Play("Closingwindow 1");
 			open = false;
 			yield return new WaitForSeconds(.5f);
+			GamePlayManager.Instance.ToggleOffAudio(GamePlayManager.Instance.random);
 		}
 
 

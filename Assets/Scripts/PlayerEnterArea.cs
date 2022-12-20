@@ -21,7 +21,7 @@ public class PlayerEnterArea : MonoBehaviour
         // 입장한 대상이 메인카메라. 즉, 플레이어 일 때
         if(other.gameObject.CompareTag("MainCamera"))
         {
-            if(_keyInventory.hasKeys >= 6)
+            if(_keyInventory.hasKeys >= GamePlayManager.Instance.checkKeys)
             {
                 SceneManager.LoadScene("Clear");
             }

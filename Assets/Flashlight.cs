@@ -13,8 +13,8 @@ public class Flashlight : MonoBehaviour
 
     void Start()
     {
-        push = false;
-        lightObj.SetActive(false);
+        push = true;
+        lightObj.SetActive(true);
 
         Player = Camera.main.transform;
     }

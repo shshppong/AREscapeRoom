@@ -12,15 +12,19 @@ public class DontEscapeRoom : MonoBehaviour
         text.gameObject.SetActive(false);
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("MainCamera"))
         {
             text.gameObject.SetActive(true);
         }
-        else
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.CompareTag("MainCamera"))
         {
-            text.gameObject.SetActive(false);
+            text.gameObject.SetActive(true);
         }
     }
 
